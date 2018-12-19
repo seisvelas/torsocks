@@ -445,7 +445,7 @@ static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
 	name = va_arg(args, __typeof__(name));
 	flags = va_arg(args, __typeof__(flags));
 
-	return tsocks_libc_syscall(TSOCKS_NR_GETDENTS, name, flags);
+	return tsocks_libc_syscall(TSOCKS_NR_GETDENTS, fd, dirp, count);
 }
 static LIBC_SYSCALL_RET_TYPE handle_getdents64(va_list args)
 {
