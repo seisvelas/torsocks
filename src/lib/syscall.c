@@ -439,11 +439,13 @@ static LIBC_SYSCALL_RET_TYPE handle_memfd_create(va_list args)
 }
 static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
 {
-	const char *name;
-	unsigned int flags;
+	unsigned int fd; 
+	struct linux_dirent *dirp;
+        unsigned int count;
 
-	name = va_arg(args, __typeof__(name));
-	flags = va_arg(args, __typeof__(flags));
+	fd = va_arg(args, __typeof__(fd));
+	dirp = va_arg(args, __typeof__(dirp));
+	count = va_arg(args, __typeof__(count));
 
 	return tsocks_libc_syscall(TSOCKS_NR_GETDENTS, fd, dirp, count);
 }
