@@ -437,6 +437,9 @@ static LIBC_SYSCALL_RET_TYPE handle_memfd_create(va_list args)
 
 	return tsocks_libc_syscall(TSOCKS_NR_MEMFD_CREATE, name, flags);
 }
+/*
+ * Handle getdents(2) syscall.
+ */
 static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
 {
 	unsigned int fd; 
@@ -449,6 +452,9 @@ static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
 
 	return tsocks_libc_syscall(TSOCKS_NR_GETDENTS, fd, dirp, count);
 }
+/*
+ * Handle getdents64(2) syscall.
+ */
 static LIBC_SYSCALL_RET_TYPE handle_getdents64(va_list args)
 {
 	unsigned int fd; 
