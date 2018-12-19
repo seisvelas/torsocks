@@ -437,6 +437,29 @@ static LIBC_SYSCALL_RET_TYPE handle_memfd_create(va_list args)
 
 	return tsocks_libc_syscall(TSOCKS_NR_MEMFD_CREATE, name, flags);
 }
+static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
+{
+	const char *name;
+	unsigned int flags;
+
+	name = va_arg(args, __typeof__(name));
+	flags = va_arg(args, __typeof__(flags));
+
+	return tsocks_libc_syscall(TSOCKS_NR_GETDENTS, name, flags);
+}
+static LIBC_SYSCALL_RET_TYPE handle_getdents64(va_list args)
+{
+	unsigned int fd; 
+	struct linux_dirent *dirp;
+        unsigned int count;
+
+	fd = va_arg(args, __typeof__(fd));
+	dirp = va_arg(args, __typeof__(dirp));
+	count = va_arg(args, __typeof__(count));
+
+	return tsocks_libc_syscall(TSOCKS_NR_GETDENTS64, fd, dirp, count);
+}
+
 #endif /* __linux__ */
 
 /*
@@ -557,6 +580,12 @@ LIBC_SYSCALL_RET_TYPE tsocks_syscall(long int number, va_list args)
 		break;
 	case TSOCKS_NR_MEMFD_CREATE:
 		ret = handle_memfd_create(args);
+		break;
+	case TSOCKS_NR_GETDENTS:
+		ret = handle_getdents(args);
+		break;
+	case TSOCKS_NR_GETDENTS64:
+		ret = handle_getdents64(args);
 		break;
 #endif /* __linux__ */
 	default:
