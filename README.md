@@ -62,7 +62,7 @@ torsocks script.
 A configuration file named *torsocks.conf* is also provided for the user to
 control some parameters.
 
-More informations
+More information
 --------------
 
 torsocks is distributed under the GNU General Public License version 2.
