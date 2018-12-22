@@ -234,7 +234,6 @@ static void init_libc_symbols(void)
 	tsocks_libc_socket = dlsym(libc_ptr, LIBC_SOCKET_NAME_STR);
 	tsocks_libc_syscall = dlsym(libc_ptr, LIBC_SYSCALL_NAME_STR);
 	tsocks_libc_execve = dlsym(libc_ptr, LIBC_EXECVE_NAME_STR);
-
 /*
  * accept4() is available on Linux and FreeBSD, but not MacOS
  */
@@ -245,11 +244,6 @@ static void init_libc_symbols(void)
 		goto error;
 	}
 #endif
-	if (!tsocks_libc_connect || !tsocks_libc_close || !tsocks_libc_socket ||
-			!tsocks_libc_syscall || !tsocks_libc_execve) {
-		ERR("Unable to lookup symbols in " LIBC_NAME "(%s)", dlerror());
-		goto error;
-	}
 
 	ret = dlclose(libc_ptr);
 	if (ret != 0) {
