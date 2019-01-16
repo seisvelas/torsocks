@@ -442,9 +442,9 @@ static LIBC_SYSCALL_RET_TYPE handle_memfd_create(va_list args)
  */
 static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
 {
-	unsigned int fd; 
+	unsigned int fd;
 	struct linux_dirent *dirp;
-        unsigned int count;
+	unsigned int count;
 
 	fd = va_arg(args, __typeof__(fd));
 	dirp = va_arg(args, __typeof__(dirp));
@@ -457,9 +457,9 @@ static LIBC_SYSCALL_RET_TYPE handle_getdents(va_list args)
  */
 static LIBC_SYSCALL_RET_TYPE handle_getdents64(va_list args)
 {
-	unsigned int fd; 
-	struct linux_dirent *dirp;
-        unsigned int count;
+	unsigned int fd;
+	struct linux_dirent64 *dirp;
+	unsigned int count;
 
 	fd = va_arg(args, __typeof__(fd));
 	dirp = va_arg(args, __typeof__(dirp));
